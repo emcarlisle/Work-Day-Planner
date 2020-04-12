@@ -1,71 +1,74 @@
 // grab id "currentday" and have value set to moment().format("dddd, MMMM Do");
 var currentDay = $("#currentDay").text(moment().format("dddd, MMMM Do"));
-var workHours = ["9am", "10am", "11am", "12am", "1pm", "2pm", "3pm", "4pm", "5pm"];
-var savedEvents = ["","","","","","","","",""];
 
-//put the functions we want to run when the page load here
-generateTable();
-
-
+// new div to hold table
+var tableEl = $("<div>");
+//append new div to the .container
+$(".container").append(tableEl);
 
 
-// display the time blocks on page for standard business hours
-// make dynamically in js
-// method to generate all the tables
+// for loop to display every hour; look into .each() ?
+for (var i = 0; i <9; i++) {
+    //new div to hold every new row to be looped
+    var tableRowEl = $("<div>");
+    //use moment to get the format for the hour column
+    var rowHourEl = moment().hours(i+9);
 
-function generateTable() {
-    var tableEl = $("<div>");
+    tableEl.append(tableRowEl);
+    tableRowEl.addClass("row time-block").attr("id", i);
 
-    $.each(workHours, function (i) {
-        console.log(i) + " " + workHours[i];
-        // in each row, display hour, textarea for event, & save btn
-        
-        //table row
-        var tableRowEl = $("<div>").addClass("time-block").attr("class", "row");
-        
-        // create td to hold time and enter time from workHours[i]
-        var hourEl = $("<div>").attr("class", "hour").text(workHours[i]);
-        var eventEl = $("<textarea>").attr("class", "description").text(workHours[i]);
-        //var saveBtn = $("<button>").attr("class", "saveBtn").text(workHours[i]);
-        //append the hourEl to table row
-        $(tableRowEl).append(hourEl);
-        //append the table row to the table
-        $(tableEl).append(tableRowEl);
-        
-        
+};  
+    
+function colorClass(time) {
+    var currentTime = moment().hour();
+    if (time < currentTime) {
+        return "past";
+    } else if (time === currentTime) {
+        return "present";
+    } else {
+        return "future";
+    }
+}
+    
+    
+    
+    
+    // create td to hold time and enter time from workHours[i]
+    //var hourEl = $("<div>").addClass("col-md-2").attr("class", "hour").text(workHours[i]);
+    //var eventEl = $("<textarea>").addClass("col-md-8").attr("class", "description").text();
+    //var saveBtn = $("<button>").addClass("col-md-2").attr("class", "saveBtn").text();
+    //append the hourEl to table row
+    
+    //append the table row to the table
+    
+    
+    
 
 
-
-
-
-    });
 
 
 
     // append the table to the container
-    $(".container").append(tableEl);
-}
 
 
-// 
 
-//color code time blocks for past, present, future
-// use moment to check time and set attr for time block to match color based on time
-// for loop to check time for each individual time block
-// if statement to set attr(background color) for time block to match color based on time
+    // 
 
-
-//click time block to enter event
-// create on click event to allow input
+    //color code time blocks for past, present, future
+    // use moment to check time and set attr for time block to match color based on time
+    // for loop to check time for each individual time block
+    // if statement to set attr(background color) for time block to match color based on time
 
 
-//click save button to save event in local storage
-// on click for save btn and add onclick event to save to local storage
+    //click time block to enter event
+    // create on click event to allow input
 
 
-// test to make sure on page reload event stays
+    //click save button to save event in local storage
+    // on click for save btn and add onclick event to save to local storage
 
 
+    // test to make sure on page reload event stays
 
 
 
@@ -76,19 +79,21 @@ function generateTable() {
 
 
 
-// create an empty array to store data from textarea
-//var userData = [];
-//
-////create a new div for table to hold columns of hour, description, & save button
-//var tableEl = $("<div>");
-//// make a variable for row? new row every hour?
-//
-//var hour = $("<div>").text(moment().format("h, A"));
-//var event = $("<textarea>").addClass("description")
-//
-////variable for button, need to save description
-//var saveEvent = $("<button>");
-//
-//// create a for loop to make rows for hour, description & save btn (look into .each())
-//// append rows to tableEL
-//for (var i =0; i < 9; i++);
+
+
+    // create an empty array to store data from textarea
+    //var userData = [];
+    //
+    ////create a new div for table to hold columns of hour, description, & save button
+    //var tableEl = $("<div>");
+    //// make a variable for row? new row every hour?
+    //
+    //var hour = $("<div>").text(moment().format("h, A"));
+    //var event = $("<textarea>").addClass("description")
+    //
+    ////variable for button, need to save description
+    //var saveEvent = $("<button>");
+    //
+    //// create a for loop to make rows for hour, description & save btn (look into .each())
+    //// append rows to tableEL
+    //for (var i =0; i < 9; i++);
