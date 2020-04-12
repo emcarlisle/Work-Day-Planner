@@ -14,18 +14,47 @@ generateTable();
 // method to generate all the tables
 
 function generateTable() {
+    var tableEl = $("<div>");
 
-};
+    $.each(workHours, function (i) {
+        console.log(i) + " " + workHours[i];
+        // in each row, display hour, textarea for event, & save btn
+        
+        //table row
+        var tableRowEl = $("<div>").addClass("time-block").attr("class", "row");
+        
+        // create td to hold time and enter time from workHours[i]
+        var hourEl = $("<div>").attr("class", "hour").text(workHours[i]);
+        var eventEl = $("<textarea>").attr("class", "description").text(workHours[i]);
+        //var saveBtn = $("<button>").attr("class", "saveBtn").text(workHours[i]);
+        //append the hourEl to table row
+        $(tableRowEl).append(hourEl);
+        //append the table row to the table
+        $(tableEl).append(tableRowEl);
+        
+        
 
+
+
+
+
+    });
+
+
+
+    // append the table to the container
+    $(".container").append(tableEl);
+}
+
+
+// 
 
 //color code time blocks for past, present, future
 // use moment to check time and set attr for time block to match color based on time
 // for loop to check time for each individual time block
 // if statement to set attr(background color) for time block to match color based on time
 
-function colorCode() {
 
-};
 //click time block to enter event
 // create on click event to allow input
 
