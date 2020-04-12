@@ -2,7 +2,7 @@
 var currentDay = $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
 //empty div to hold textarea input
-var savedEvents = [];
+//var savedEvents = [];
 
 // new div to hold table
 var tableEl = $("<div>");
@@ -49,27 +49,41 @@ for (var i = 0; i <9; i++) {
     saveBtn.addClass("saveBtn fas fa-save").attr("id", i);
     
     
-    $(".saveBtn").on("click", function(event) {
-        //save eventEl to local storage
-        // .val() gets value of textarea
-        var savedEvents = event.target.previousElementSibling.value
-        console.log(event);
-        localStorage.setItem(event.target.attributes[1].value, savedEvents);
+    
+}; 
+//    //moved savebtn out of loop bc it would save
+//    //in all indexes?
 
-        //var savedEvents = $("textarea").val();
-        //console.log(JSON.stringify(savedEvents));
-        //var eventEl = $.trim($(".description").val());
-        //if (eventEl != "") {
-        //    alert(eventEl);
-        //}
-        //localStorage.setItem("textarea", JSON.stringify(savedEvents));
-        //var savedEvents = JSON.parse(localStorage.getItem("textarea"));
-        //localStorage.setItem("eventEl", savedEvents.get("eventEl"));
-        //console.log(localStorage);
-    });
+$(".saveBtn").on("click", function(event) {
+    var savedEvents = event.target.previousElementSibling.value
+    console.log(event);
+    localStorage.setItem(event.target.attributes[1].value, savedEvents);
+    console.log(savedEvents);
+});
+
+//$.each(textarea, function() {
+//    if (localStorage["savedEvents"] !== null && localStorage["savedEvents"] !== undefined) {
+//
+//    }
+//    //localStorage.setItem(event.target.attributes[1].value, savedEvents);
+//});
+   
+    
+    //var savedEvents = $("textarea").val();
+    //console.log(JSON.stringify(savedEvents));
+    //var eventEl = $.trim($(".description").val());
+    //if (eventEl != "") {
+    //    alert(eventEl);
+    //}
+    //localStorage.setItem("textarea", JSON.stringify(savedEvents));
+    //var savedEvents = JSON.parse(localStorage.getItem("textarea"));
+    //localStorage.setItem("eventEl", savedEvents.get("eventEl"));
+    //console.log(localStorage);
 
 
-};  
+
+
+    
 
 // function to differentiate between past, present, & future
 // with the hour set as parameter
@@ -84,4 +98,4 @@ function colorClass(hour) {
     } else {
         return "future";
     }
-}
+};
