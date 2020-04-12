@@ -11,6 +11,9 @@ $(".container").append(tableEl);
 var savedEvents = [];
 
 // for loop to display every hour; look into .each() ?
+// $.each(tableEl), function(i, tableRowEl) {
+//    tableEl.append(tableRowEL) ??
+//}
 for (var i = 0; i <9; i++) {
     //new div to hold every new row to be looped
     var tableRowEl = $("<div>");
@@ -45,17 +48,34 @@ for (var i = 0; i <9; i++) {
     //this button needs a click event to save the eventEl; save icon
     saveBtn.addClass("saveBtn fas fa-save");
 
-    $("saveBtn").on("click", function(i) {
+   
+    //empty div to hold textarea input
+    var savedEvents = [];
+    $(".saveBtn").on("click", function() {
         //save eventEl to local storage
+        // .val() gets value of textarea
+        var eventEl = $.trim($(".description").val());
+        if (eventEl != "") {
+            alert(eventEl);
+        }
+        
+
+
+        //localStorage.setItem("textarea", JSON.stringify(savedEvents));
+        //var savedEvents = JSON.parse(localStorage.getItem("textarea"));
+        //localStorage.setItem("eventEl", savedEvents.get("eventEl"));
+        //console.log(localStorage);
     });
 
 
 };  
 
 // function to differentiate between past, present, & future
-// of the current hour
+// with the hour set as parameter
 function colorClass(hour) {
+    //new variable for current time; use moment to get current hour
     var currentTime = moment().hour();
+    // 
     if (hour < currentTime) {
         return "past";
     } else if (hour === currentTime) {
