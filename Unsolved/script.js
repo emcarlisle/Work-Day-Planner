@@ -19,7 +19,18 @@ for (var i = 0; i <9; i++) {
     // add class to tableRowEl from css; set attribute ID with value of i
     tableRowEl.addClass("row time-block").attr("id", i);
 
-    //new variable for hour
+    //create new div for hour and add class with columns
+    var hourEl = $("<div>").addClass("col-md-2");
+    //create new div for the event and add class with columns
+    var eventEl = $("<textarea>").addClass("col-md-8");
+    //create savebtn to save event and add class with col
+    var saveEvent = $("<button>").addClass("col-md-2");
+    //append new elements
+    tableRowEl.append(hourEl, eventEl, saveEvent);
+    
+
+
+
 
 };  
     
