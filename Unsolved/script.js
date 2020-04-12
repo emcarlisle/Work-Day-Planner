@@ -11,11 +11,15 @@ $(".container").append(tableEl);
 for (var i = 0; i <9; i++) {
     //new div to hold every new row to be looped
     var tableRowEl = $("<div>");
-    //use moment to get the format for the hour column
-    var rowHourEl = moment().hours(i+9);
-
+    //use moment to get the format for the hour column; moment().hours(number);
+    // i+9 for 8 rows; set as value for new variable colHourEl(column 1 contains hour)
+    var colHourEl = moment().hours(i+9);
+    // append the row to the tableEl
     tableEl.append(tableRowEl);
+    // add class to tableRowEl from css; set attribute ID with value of i
     tableRowEl.addClass("row time-block").attr("id", i);
+
+    //new variable for hour
 
 };  
     
