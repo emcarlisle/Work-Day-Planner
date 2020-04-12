@@ -12,8 +12,8 @@ for (var i = 0; i <9; i++) {
     //new div to hold every new row to be looped
     var tableRowEl = $("<div>");
     //use moment to get the format for the hour column; moment().hours(number);
-    // i+9 for 8 rows; set as value for new variable colHourEl(column 1 contains hour)
-    var colHourEl = moment().hours(i+9);
+    // i+9 for 8 rows; set as value for new variable newHourEl
+    var newHourEl = moment().hours(i+9);
     // append the row to the tableEl
     tableEl.append(tableRowEl);
     // add class to tableRowEl from css; set attribute ID with value of i
@@ -28,8 +28,19 @@ for (var i = 0; i <9; i++) {
     //append new elements
     tableRowEl.append(hourEl, eventEl, saveEvent);
     
+    //add classes to new variables
+    // hour element needs to display hour with the newHourEl var
+    //formatted as just hour and am/pm; format("h A");   
+    hourEl.addClass("hour").text(newHourEl.format("h A"));
+    // the event needs to have: a class with description +
+    // a function to display past, present, future by the hour
+    eventEl.addClass("description " + colorClass(newHourEl.hour()));
+    //this button needs a click event to save the eventEl; save icon
+    saveEvent.addClass("saveBtn fas fa-save");
 
-
+    $(saveEvent).on("click", function() {
+        //save eventEl to local storage
+    })
 
 
 };  
@@ -44,71 +55,3 @@ function colorClass(time) {
         return "future";
     }
 }
-    
-    
-    
-    
-    // create td to hold time and enter time from workHours[i]
-    //var hourEl = $("<div>").addClass("col-md-2").attr("class", "hour").text(workHours[i]);
-    //var eventEl = $("<textarea>").addClass("col-md-8").attr("class", "description").text();
-    //var saveBtn = $("<button>").addClass("col-md-2").attr("class", "saveBtn").text();
-    //append the hourEl to table row
-    
-    //append the table row to the table
-    
-    
-    
-
-
-
-
-
-    // append the table to the container
-
-
-
-    // 
-
-    //color code time blocks for past, present, future
-    // use moment to check time and set attr for time block to match color based on time
-    // for loop to check time for each individual time block
-    // if statement to set attr(background color) for time block to match color based on time
-
-
-    //click time block to enter event
-    // create on click event to allow input
-
-
-    //click save button to save event in local storage
-    // on click for save btn and add onclick event to save to local storage
-
-
-    // test to make sure on page reload event stays
-
-
-
-
-
-
-
-
-
-
-
-
-    // create an empty array to store data from textarea
-    //var userData = [];
-    //
-    ////create a new div for table to hold columns of hour, description, & save button
-    //var tableEl = $("<div>");
-    //// make a variable for row? new row every hour?
-    //
-    //var hour = $("<div>").text(moment().format("h, A"));
-    //var event = $("<textarea>").addClass("description")
-    //
-    ////variable for button, need to save description
-    //var saveEvent = $("<button>");
-    //
-    //// create a for loop to make rows for hour, description & save btn (look into .each())
-    //// append rows to tableEL
-    //for (var i =0; i < 9; i++);
