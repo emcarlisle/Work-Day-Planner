@@ -1,14 +1,14 @@
 // grab id "currentday" and have value set to moment().format("dddd, MMMM Do");
 var currentDay = $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
-
+//empty div to hold textarea input
+var savedEvents = [];
 
 // new div to hold table
 var tableEl = $("<div>");
 //append new div to the .container
 $(".container").append(tableEl);
-//empty div to hold textarea input
-var savedEvents = [];
+
 
 // for loop to display every hour; look into .each() ?
 // $.each(tableEl), function(i, tableRowEl) {
@@ -46,21 +46,22 @@ for (var i = 0; i <9; i++) {
     // a function to display past, present, future by the hour
     eventEl.addClass("description " + colorClass(newHourEl.hour()));
     //this button needs a click event to save the eventEl; save icon
-    saveBtn.addClass("saveBtn fas fa-save");
-
-   
-    //empty div to hold textarea input
-    var savedEvents = [];
-    $(".saveBtn").on("click", function() {
+    saveBtn.addClass("saveBtn fas fa-save").attr("id", i);
+    
+    
+    $(".saveBtn").on("click", function(event) {
         //save eventEl to local storage
         // .val() gets value of textarea
-        var eventEl = $.trim($(".description").val());
-        if (eventEl != "") {
-            alert(eventEl);
-        }
-        
+        var savedEvents = event.target.previousElementSibling.value
+        console.log(event);
+        localStorage.setItem(event.target.attributes[1].value, savedEvents);
 
-
+        //var savedEvents = $("textarea").val();
+        //console.log(JSON.stringify(savedEvents));
+        //var eventEl = $.trim($(".description").val());
+        //if (eventEl != "") {
+        //    alert(eventEl);
+        //}
         //localStorage.setItem("textarea", JSON.stringify(savedEvents));
         //var savedEvents = JSON.parse(localStorage.getItem("textarea"));
         //localStorage.setItem("eventEl", savedEvents.get("eventEl"));
