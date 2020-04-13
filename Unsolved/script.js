@@ -75,7 +75,9 @@ $(".saveBtn").on("click", function(event) {
     
     if (localStorage["id"] !== null && localStorage["savedEvents"] !== undefined) {
         var nineAm = $("<p>" + localStorage["id", savedEvents] + "</p>");
+        var tenAm = $("<p>" + localStorage["id", savedEvents] + "</p>");
         $("#nineAm").append(nineAm[0].innerText);
+        $("#tenAm").append(tenAm[1].innerText);
     } else {
         ("");
     };
