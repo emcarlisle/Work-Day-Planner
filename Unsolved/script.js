@@ -41,14 +41,27 @@ for (var i = 0; i <9; i++) {
     //add classes to new variables
     // hour element needs to display hour with the newHourEl var
     //formatted as just hour and am/pm; format("h A");   
-    hourEl.addClass("hour").text(newHourEl.format("h A"));
+    hourEl.addClass("hour").text(newHourEl.format("h A")).attr("id", i);
     // the event needs to have: a class with description +
     // a function to display past, present, future by the hour
     eventEl.addClass("description " + colorClass(newHourEl.hour()));
     //this button needs a click event to save the eventEl; save icon
     saveBtn.addClass("saveBtn fas fa-save").attr("id", i);
     
-    
+    // function to differentiate between past, present, & future
+    // with the hour set as parameter
+    function colorClass(hour) {
+        //new variable for current time; use moment to get current hour
+        var currentTime = moment().hour();
+        // 
+        if (hour < currentTime) {
+            return "past";
+        } else if (hour === currentTime) {
+            return "present";
+        } else {
+            return "future";
+        }
+    };
     
 }; 
 //    //moved savebtn out of loop bc it would save
@@ -59,15 +72,56 @@ $(".saveBtn").on("click", function(event) {
     console.log(event);
     localStorage.setItem(event.target.attributes[1].value, savedEvents);
     console.log(savedEvents);
-});
+    
+    if (localStorage["id"] !== null && localStorage["savedEvents"] !== undefined) {
+        var nineAm = $("<p>" + localStorage["id", savedEvents] + "</p>");
+        $("#nineAm").append(nineAm[0].innerText);
+    } else {
+        ("");
+    };
+    
+    //if (localStorage[savedEvents] !== null && localStorage[savedEvents] !== undefined) {
+    //  $(".description").val(localStorage.getItem(event.target.attributes[1].value, savedEvents));
+    //} else {
+    //  ("");
+    //}
+    //var savedEvents = $(".description").val();
+    //$(".description").val(localStorage.setItem(savedEvents));
+    //var time = $("#id").val();
+    //localStorage.setItem(time, savedEvents);
+    //localStorage.getItem(event.target.attributes[1].value, savedEvents);
 
-//$.each(textarea, function() {
+});
+//$(document).ready(function() {
 //    if (localStorage["savedEvents"] !== null && localStorage["savedEvents"] !== undefined) {
-//
+//        var nineAm = $("<p>" + localStorage["saveEvents"] + "</p>");
+//        $("#nineAm").append(nineAm[0].innerText);
+//      } else {
+//        ("");
+//    };
+//})
+
+//$(document).ready(function() {
+//    if (localStorage[time, savedEvents] !== null && localStorage[time, savedEvents] !== undefined) {
+//    var savedEvents = $("<p>" + localStorage[savedEvents] + "<p>");
+//    var time = $("<p>" + localStorage[time] + "<p>");
+//    $(".description").append(savedEvents[0].innerText);
+//    $("id").append(savedEvent[0].innerText);
+//    }   else {
+//        $(" .description").val(localStorage.getItem(time, savedEvents));
 //    }
-//    //localStorage.setItem(event.target.attributes[1].value, savedEvents);
-//});
-   
+    //$(".saveBtn").each(function() {
+    //    $("")
+    //    //var savedEvents = event.target.previousElementSibling.value
+    //    //if (localStorage["savedEvents"] !== null && localStorage["savedEvents"] !== undefined) {
+    //    //var savedEvents = $("<p>" + localStorage["savedEvents"] + "<p>");
+    //    //$("#savedEvents").append(savedEvents[0].innerText);
+    //    //}   else {
+    //    //    ("");
+    //    //};
+    //    //localStorage.setItem(event.target.attributes[1].value, savedEvents);
+    //});
+    //   
     
     //var savedEvents = $("textarea").val();
     //console.log(JSON.stringify(savedEvents));
@@ -80,22 +134,4 @@ $(".saveBtn").on("click", function(event) {
     //localStorage.setItem("eventEl", savedEvents.get("eventEl"));
     //console.log(localStorage);
 
-
-
-
-    
-
-// function to differentiate between past, present, & future
-// with the hour set as parameter
-function colorClass(hour) {
-    //new variable for current time; use moment to get current hour
-    var currentTime = moment().hour();
-    // 
-    if (hour < currentTime) {
-        return "past";
-    } else if (hour === currentTime) {
-        return "present";
-    } else {
-        return "future";
-    }
-};
+//});
